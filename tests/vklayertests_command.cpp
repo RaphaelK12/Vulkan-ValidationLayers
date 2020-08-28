@@ -4331,10 +4331,10 @@ TEST_F(VkLayerTest, ResolveImageImageType) {
 
     // Set height with 1D dstImage
     resolveRegion.extent.height = 2;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstImage-00276");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstImage-00276");
     // Also exceed height of both images
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-srcOffset-00270");
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstOffset-00275");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-srcOffset-00270");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstOffset-00275");
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage1D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
@@ -4342,8 +4342,8 @@ TEST_F(VkLayerTest, ResolveImageImageType) {
 
     // Set depth with 1D dstImage and 2D srcImage
     resolveRegion.extent.depth = 2;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstImage-00278");
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-srcImage-00273");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstImage-00278");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-srcImage-00273");
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage1D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
@@ -4412,7 +4412,7 @@ TEST_F(VkLayerTest, ResolveImageSizeExceeded) {
 
     // srcImage exceeded in x-dim
     resolveRegion.srcOffset.x = 4;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-srcOffset-00269");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-srcOffset-00269");
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
@@ -4420,7 +4420,7 @@ TEST_F(VkLayerTest, ResolveImageSizeExceeded) {
 
     // dstImage exceeded in x-dim
     resolveRegion.dstOffset.x = 4;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstOffset-00274");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstOffset-00274");
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
@@ -4429,14 +4429,14 @@ TEST_F(VkLayerTest, ResolveImageSizeExceeded) {
     // both image exceeded in y-dim because mipLevel 3 is a 4x4 size image
     resolveRegion.extent = {4, 8, 1};
     resolveRegion.srcSubresource.mipLevel = 3;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-srcOffset-00270");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-srcOffset-00270");
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
     resolveRegion.srcSubresource.mipLevel = 0;
 
     resolveRegion.dstSubresource.mipLevel = 3;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstOffset-00275");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstOffset-00275");
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
@@ -4444,8 +4444,8 @@ TEST_F(VkLayerTest, ResolveImageSizeExceeded) {
 
     // srcImage exceeded in z-dim
     resolveRegion.srcOffset.z = 1;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-srcOffset-00272");
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-srcImage-00273");  // because it's a 2d image
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-srcOffset-00272");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-srcImage-00273");  // because it's a 2d image
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();
@@ -4453,8 +4453,8 @@ TEST_F(VkLayerTest, ResolveImageSizeExceeded) {
 
     // dstImage exceeded in z-dim
     resolveRegion.dstOffset.z = 1;
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstOffset-00277");
-    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-VkImageResolve-dstImage-00278");  // because it's a 2d image
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstOffset-00277");
+    m_errorMonitor->SetDesiredFailureMsg(kErrorBit, "VUID-vkCmdResolveImage-dstImage-00278");  // because it's a 2d image
     m_commandBuffer->ResolveImage(srcImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, dstImage2D.image(), VK_IMAGE_LAYOUT_GENERAL, 1,
                                   &resolveRegion);
     m_errorMonitor->VerifyFound();

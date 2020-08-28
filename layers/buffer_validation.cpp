@@ -3318,7 +3318,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((pRegions[i].srcOffset.y != 0) || (pRegions[i].extent.height != 1)) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(src_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-srcImage-00271",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-srcImage-00271",
                                      "vkCmdResolveImage(): srcImage (%s) is 1D but pRegions[%u] srcOffset.y (%d) is not 0 or "
                                      "extent.height (%u) is not 1.",
                                      report_data->FormatHandle(src_image_state->image).c_str(), i, pRegions[i].srcOffset.y,
@@ -3329,7 +3329,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((pRegions[i].srcOffset.z != 0) || (pRegions[i].extent.depth != 1)) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(src_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-srcImage-00273",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-srcImage-00273",
                                      "vkCmdResolveImage(): srcImage (%s) is 2D but pRegions[%u] srcOffset.z (%d) is not 0 or "
                                      "extent.depth (%u) is not 1.",
                                      report_data->FormatHandle(src_image_state->image).c_str(), i, pRegions[i].srcOffset.z,
@@ -3341,7 +3341,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((pRegions[i].dstOffset.y != 0) || (pRegions[i].extent.height != 1)) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(dst_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-dstImage-00276",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-dstImage-00276",
                                      "vkCmdResolveImage(): dstImage (%s) is 1D but pRegions[%u] dstOffset.y (%d) is not 0 or "
                                      "extent.height (%u) is not 1.",
                                      report_data->FormatHandle(dst_image_state->image).c_str(), i, pRegions[i].dstOffset.y,
@@ -3352,7 +3352,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((pRegions[i].dstOffset.z != 0) || (pRegions[i].extent.depth != 1)) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(dst_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-dstImage-00278",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-dstImage-00278",
                                      "vkCmdResolveImage(): dstImage (%s) is 2D but pRegions[%u] dstOffset.z (%d) is not 0 or "
                                      "extent.depth (%u) is not 1.",
                                      report_data->FormatHandle(dst_image_state->image).c_str(), i, pRegions[i].dstOffset.z,
@@ -3369,7 +3369,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((extent_check & x_bit) != 0) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(src_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-srcOffset-00269",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-srcOffset-00269",
                                      "vkCmdResolveImage(): srcImage (%s) pRegions[%u] x-dimension offset [%1d] + extent [%u] "
                                      "exceeds subResource width [%u].",
                                      report_data->FormatHandle(src_image_state->image).c_str(), i, region.srcOffset.x,
@@ -3379,7 +3379,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((extent_check & y_bit) != 0) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(src_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-srcOffset-00270",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-srcOffset-00270",
                                      "vkCmdResolveImage(): srcImage (%s) pRegions[%u] y-dimension offset [%1d] + extent [%u] "
                                      "exceeds subResource height [%u].",
                                      report_data->FormatHandle(src_image_state->image).c_str(), i, region.srcOffset.y,
@@ -3389,7 +3389,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((extent_check & z_bit) != 0) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(src_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-srcOffset-00272",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-srcOffset-00272",
                                      "vkCmdResolveImage(): srcImage (%s) pRegions[%u] z-dimension offset [%1d] + extent [%u] "
                                      "exceeds subResource depth [%u].",
                                      report_data->FormatHandle(src_image_state->image).c_str(), i, region.srcOffset.z,
@@ -3406,7 +3406,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((extent_check & x_bit) != 0) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(dst_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-dstOffset-00274",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-dstOffset-00274",
                                      "vkCmdResolveImage(): dstImage (%s) pRegions[%u] x-dimension offset [%1d] + extent [%u] "
                                      "exceeds subResource width [%u].",
                                      report_data->FormatHandle(dst_image_state->image).c_str(), i, region.srcOffset.x,
@@ -3416,7 +3416,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((extent_check & y_bit) != 0) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(dst_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-dstOffset-00275",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-dstOffset-00275",
                                      "vkCmdResolveImage(): dstImage (%s) pRegions[%u] y-dimension offset [%1d] + extent [%u] "
                                      "exceeds subResource height [%u].",
                                      report_data->FormatHandle(dst_image_state->image).c_str(), i, region.srcOffset.y,
@@ -3426,7 +3426,7 @@ bool CoreChecks::PreCallValidateCmdResolveImage(VkCommandBuffer commandBuffer, V
                 if ((extent_check & z_bit) != 0) {
                     LogObjectList objlist(cb_node->commandBuffer);
                     objlist.add(dst_image_state->image);
-                    skip |= LogError(objlist, "VUID-VkImageResolve-dstOffset-00277",
+                    skip |= LogError(objlist, "VUID-vkCmdResolveImage-dstOffset-00277",
                                      "vkCmdResolveImage(): dstImage (%s) pRegions[%u] z-dimension offset [%1d] + extent [%u] "
                                      "exceeds subResource depth [%u].",
                                      report_data->FormatHandle(dst_image_state->image).c_str(), i, region.srcOffset.z,
